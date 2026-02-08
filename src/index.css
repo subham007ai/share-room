@@ -1,0 +1,324 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Mono palette - dark theme */
+    --mono-0: 0 0% 0%;
+    --mono-50: 0 0% 5%;
+    --mono-100: 0 0% 10%;
+    --mono-200: 0 0% 15%;
+    --mono-300: 0 0% 25%;
+    --mono-400: 0 0% 40%;
+    --mono-500: 0 0% 50%;
+    --mono-600: 0 0% 60%;
+    --mono-700: 0 0% 70%;
+    --mono-800: 0 0% 85%;
+    --mono-900: 0 0% 95%;
+
+    /* Semantic tokens using mono */
+    --background: 0 0% 5%;
+    --foreground: 0 0% 95%;
+
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 0 0% 85%;
+    --primary-foreground: 0 0% 5%;
+
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 95%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 60%;
+
+    --accent: 0 0% 20%;
+    --accent-foreground: 0 0% 95%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 95%;
+
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 95%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 5%;
+
+    --border: 0 0% 25%;
+    --input: 0 0% 10%;
+    --ring: 0 0% 60%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 8%;
+    --sidebar-foreground: 0 0% 60%;
+    --sidebar-primary: 0 0% 85%;
+    --sidebar-primary-foreground: 0 0% 5%;
+    --sidebar-accent: 0 0% 15%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 0 0% 25%;
+    --sidebar-ring: 0 0% 60%;
+
+    /* Code styling - NOT Prism colors */
+    --code: 0 0% 70%;
+    --code-foreground: 0 0% 95%;
+    --code-bg: 0 0% 10%;
+
+    /* Terminal colors - keep for Prism syntax highlighting */
+    --terminal-green: 142 70% 45%;
+    --terminal-yellow: 48 96% 53%;
+    --terminal-red: 0 72% 51%;
+    --terminal-blue: 217 91% 60%;
+    --terminal-purple: 280 60% 60%;
+  }
+
+  .light {
+    /* Mono palette - light theme */
+    --mono-0: 0 0% 100%;
+    --mono-50: 0 0% 98%;
+    --mono-100: 0 0% 95%;
+    --mono-200: 0 0% 90%;
+    --mono-300: 0 0% 80%;
+    --mono-400: 0 0% 65%;
+    --mono-500: 0 0% 50%;
+    --mono-600: 0 0% 40%;
+    --mono-700: 0 0% 30%;
+    --mono-800: 0 0% 20%;
+    --mono-900: 0 0% 10%;
+
+    /* Semantic tokens using mono */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 10%;
+
+    --card: 0 0% 98%;
+    --card-foreground: 0 0% 10%;
+
+    --popover: 0 0% 98%;
+    --popover-foreground: 0 0% 10%;
+
+    --primary: 0 0% 20%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 95%;
+    --secondary-foreground: 0 0% 10%;
+
+    --muted: 0 0% 95%;
+    --muted-foreground: 0 0% 40%;
+
+    --accent: 0 0% 90%;
+    --accent-foreground: 0 0% 10%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 10%;
+
+    --border: 0 0% 80%;
+    --input: 0 0% 95%;
+    --ring: 0 0% 40%;
+
+    /* Code styling - NOT Prism colors */
+    --code: 0 0% 40%;
+    --code-foreground: 0 0% 10%;
+    --code-bg: 0 0% 95%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    /* Performance optimizations */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    /* Mobile optimizations */
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    overscroll-behavior: none;
+  }
+
+  /* Hardware acceleration for smooth animations */
+  * {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Mobile viewport fix */
+  html,
+  body {
+    height: 100%;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    @apply bg-primary/30;
+  }
+}
+
+@layer utilities {
+  .font-mono {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  .font-sans {
+    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  }
+
+
+
+  .code-scrollbar::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .code-scrollbar::-webkit-scrollbar-track {
+    background: hsl(var(--code-bg));
+  }
+
+  .code-scrollbar::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted-foreground) / 0.3);
+    border-radius: 4px;
+  }
+
+  .code-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.5);
+  }
+
+
+
+  /* Prevent zoom on input focus (iOS) */
+  input,
+  textarea,
+  select {
+    font-size: 16px;
+  }
+
+  @media (max-width: 640px) {
+
+    input,
+    textarea,
+    select {
+      font-size: 16px !important;
+    }
+  }
+}
+
+/* Prism.js custom theme */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: hsl(var(--foreground));
+  background: none;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.875rem;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.6;
+  tab-size: 2;
+  hyphens: none;
+}
+
+pre[class*="language-"] {
+  padding: 1rem;
+  margin: 0;
+  overflow: auto;
+  border-radius: var(--radius);
+  background: hsl(var(--code-bg));
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: hsl(var(--muted-foreground));
+}
+
+.token.punctuation {
+  color: hsl(var(--muted-foreground));
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  color: hsl(var(--terminal-red));
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+  color: hsl(var(--terminal-green));
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+  color: hsl(var(--terminal-yellow));
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+  color: hsl(var(--terminal-purple));
+}
+
+.token.function,
+.token.class-name {
+  color: hsl(var(--terminal-blue));
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+  color: hsl(var(--warning));
+}
+
+.line-numbers .line-numbers-rows {
+  border-right: 1px solid hsl(var(--border));
+  padding-right: 0.75rem;
+  margin-right: 0.75rem;
+}
+
+
+.line-numbers-rows>span::before {
+  color: hsl(var(--muted-foreground) / 0.5);
+}
+
+/* Hide Spline Badge */
+a[href="https://spline.design"],
+#n-logo {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}

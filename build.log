@@ -1,0 +1,64 @@
+﻿
+> vite_react_shadcn_ts@0.0.0 build
+> vite build
+
+[36mvite v5.4.19 [32mbuilding for production...[36m[39m
+transforming...
+node.exe : Browserslist: browsers data 
+(caniuse-lite) is 8 months old. Please 
+run:
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" 
+"C:\Program Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecifi 
+   ed: (Browserslist: b...ld. Please ru  
+  n::String) [], RemoteException
+    + FullyQualifiedErrorId : NativeComm 
+   andError
+ 
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https:/
+/github.com/browserslist/update-db#readme
+[32mΓ£ô[39m 64 modules transformed.
+[31mx[39m Build failed in 1.49s
+[31merror during build:
+[31m[vite:esbuild] Transform failed 
+with 1 error:
+D:/ShareRoom-main/src/components/shareroo
+m/ChatInput.tsx:181:1: ERROR: Expected 
+")" but found ";"[31m
+file: [36mD:/ShareRoom-main/src/componen
+ts/shareroom/ChatInput.tsx:181:1[31m
+[33m
+[33mExpected ")" but found ";"[33m
+179|      </div>
+180|    );
+181|  };
+   |   ^
+182|  
+[31m
+    at failureErrorWithLog (D:\ShareRoom-
+main\node_modules\esbuild\lib\main.js:147
+2:15)
+    at D:\ShareRoom-main\node_modules\esb
+uild\lib\main.js:755:50
+    at responseCallbacks.<computed> (D:\S
+hareRoom-main\node_modules\esbuild\lib\ma
+in.js:622:9)
+    at handleIncomingPacket (D:\ShareRoom
+-main\node_modules\esbuild\lib\main.js:67
+7:12)
+    at Socket.readFromStdout (D:\ShareRoo
+m-main\node_modules\esbuild\lib\main.js:6
+00:7)
+    at Socket.emit (node:events:508:28)
+    at addChunk 
+(node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode 
+(node:internal/streams/readable:510:3)
+    at Readable.push 
+(node:internal/streams/readable:390:5)
+    at Pipe.onStreamRead (node:internal/s
+tream_base_commons:189:23)[39m
