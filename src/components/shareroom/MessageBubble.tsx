@@ -228,7 +228,7 @@ export const MessageBubble = memo(({
             size="sm"
             variant="ghost"
             onClick={onReply}
-            className="h-6 w-6 sm:h-7 sm:w-7 p-0 text-mono-500 hover:text-mono-700 hover:bg-mono-200"
+            className="h-6 w-6 sm:h-7 sm:w-7 p-0 text-white/50 hover:text-white/80 hover:bg-white/10"
           >
             <Reply className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
           </Button>
@@ -236,7 +236,7 @@ export const MessageBubble = memo(({
           {(isHost || isOwn) && (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button size="sm" variant="ghost" className="h-6 w-6 sm:h-7 sm:w-7 p-0 text-mono-500 hover:text-mono-700 hover:bg-mono-200">
+                <Button size="sm" variant="ghost" className="h-6 w-6 sm:h-7 sm:w-7 p-0 text-white/50 hover:text-white/90 hover:bg-white/10">
                   <MoreVertical className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                 </Button>
               </DropdownMenuTrigger>
