@@ -52,7 +52,7 @@ export const MessageBubble = memo(({
   if (message.is_system) {
     return (
       <div className="flex justify-center py-2 animate-message-system">
-        <span className="text-[11px] text-mono-500 px-3 py-1">
+        <span className="text-[11px] text-white/50 px-3 py-1 bg-white/5 rounded-full backdrop-blur-sm border border-white/10">
           {message.content}
         </span>
       </div>
@@ -122,13 +122,11 @@ export const MessageBubble = memo(({
         </button>
       )}
 
-      {/* Username and time - only for other users */}
-      {!isOwn && (
-        <div className={`flex items-center gap-2 mb-1 ml-2`}>
-          <span className="text-xs font-medium text-mono-700">{message.username}</span>
-          <span className="text-[10px] text-mono-500">{time}</span>
-        </div>
-      )}
+      {/* Username and time - always visible */}
+      <div className={`flex items-center gap-2 mb-1 ${isOwn ? 'mr-2 flex-row-reverse' : 'ml-2'}`}>
+        <span className="text-xs font-medium text-white/70">{message.username}</span>
+        <span className="text-[10px] text-white/40">{time}</span>
+      </div>
 
       <div className={`flex items-end gap-1 sm:gap-2 max-w-[85%] sm:max-w-[70%] ${isOwn ? 'flex-row-reverse' : 'flex-row'}`}>
         {/* Message bubble */}
@@ -267,10 +265,7 @@ export const MessageBubble = memo(({
         </div>
       </div>
 
-      {/* Time for own messages - below bubble */}
-      {isOwn && (
-        <span className="text-[10px] text-mono-500 mt-1 mr-2">{time}</span>
-      )}
+
     </div>
   );
 });

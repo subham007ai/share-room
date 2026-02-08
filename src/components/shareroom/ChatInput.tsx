@@ -134,7 +134,7 @@ export const ChatInput = memo(({
           size="icon"
           onClick={() => fileInputRef.current?.click()}
           disabled={disabled}
-          className="shrink-0 h-10 w-10 sm:h-11 sm:w-11 rounded-full bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20"
+          className="shrink-0 h-10 w-10 sm:h-11 sm:w-11 rounded-full bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 text-white"
         >
           <Plus className="w-4 h-4" />
         </Button>
@@ -148,7 +148,7 @@ export const ChatInput = memo(({
               onPaste={handlePaste}
               placeholder={pastedImage ? "Press Enter to send image" : (codeMode ? "Type code..." : "Type a message...")}
               disabled={disabled}
-              className={`min-h-[32px] sm:min-h-[36px] max-h-[100px] sm:max-h-[120px] resize-none bg-transparent text-mono-800 placeholder:text-mono-400 focus-visible:ring-0 focus-visible:ring-offset-0 p-0 text-sm will-change-contents ${codeMode ? 'font-mono' : ''}`}
+              className={`min-h-[32px] sm:min-h-[36px] max-h-[100px] sm:max-h-[120px] resize-none bg-transparent text-white placeholder:text-white/40 focus-visible:ring-0 focus-visible:ring-offset-0 p-0 text-sm will-change-contents ${codeMode ? 'font-mono' : ''}`}
               rows={1}
               style={{ WebkitAppearance: 'none' }}
             />
@@ -160,7 +160,7 @@ export const ChatInput = memo(({
             size="icon"
             onClick={() => setCodeMode(!codeMode)}
             disabled={disabled}
-            className={`shrink-0 h-10 w-10 sm:h-11 sm:w-11 rounded-full ${codeMode ? 'bg-mono-700 hover:bg-mono-600 text-mono-100' : 'text-mono-500 hover:text-mono-800 hover:bg-mono-200'}`}
+            className={`shrink-0 h-10 w-10 sm:h-11 sm:w-11 rounded-full ${codeMode ? 'bg-white hover:bg-white/90 text-black' : 'text-white/60 hover:text-white hover:bg-white/20'}`}
             title={codeMode ? "Code mode ON (click to turn off)" : "Code mode OFF (click to turn on)"}
           >
             <Code className="w-3.5 h-3.5 sm:w-4 sm:h-4" />

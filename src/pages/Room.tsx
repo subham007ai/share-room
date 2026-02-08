@@ -194,7 +194,7 @@ const Room = () => {
             <div className="max-w-[95%] sm:max-w-[780px] mx-auto w-full px-2 sm:px-4 py-2 sm:py-4">
               <div className="space-y-2 sm:space-y-3">
                 {messages.length === 0 && (
-                  <div className="text-center py-8 sm:py-12 text-mono-500">
+                  <div className="text-center py-8 sm:py-12 text-white/40">
                     <p className="text-sm">No messages yet. Start the conversation!</p>
                   </div>
                 )}

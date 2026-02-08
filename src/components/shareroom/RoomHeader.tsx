@@ -63,8 +63,8 @@ export const RoomHeader = ({
           <div className="hidden md:flex items-center gap-2 px-4 py-2.5 bg-white/10 backdrop-blur-md rounded-full border border-white/20 shadow-lg smooth-transition h-12">
             <Logo size="sm" showText={false} />
             <div className="ml-1">
-              <h1 className="font-medium text-sm text-mono-800 leading-tight">{roomName}</h1>
-              <div className="flex items-center gap-1.5 text-xs text-mono-500">
+              <h1 className="font-medium text-sm text-white/90 leading-tight">{roomName}</h1>
+              <div className="flex items-center gap-1.5 text-xs text-white/60">
                 <Users className="w-3 h-3" />
                 <span>{participantCount} online</span>
               </div>
