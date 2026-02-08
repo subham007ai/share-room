@@ -177,7 +177,7 @@ const Privacy = () => {
                             <p>For questions about this Privacy Policy or ShareRoom’s data handling:</p>
                             <ul className="list-disc pl-5 space-y-2 text-neutral-400">
                                 <li>Email: privacy@shareroom.io</li>
-                                <li>Project repository: <a href="https://github.com" target="_blank" rel="noreferrer" className="text-indigo-400 hover:text-indigo-300 underline">GitHub</a></li>
+                                <li>Project repository: <a href="https://github.com/subham007ai/share-room" target="_blank" rel="noreferrer" className="text-indigo-400 hover:text-indigo-300 underline">GitHub</a></li>
                             </ul>
                         </section>
 

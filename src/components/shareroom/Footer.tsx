@@ -60,7 +60,7 @@ export const Footer = () => {
                         <h4 className="text-sm font-medium text-white">Project</h4>
                         <div className="flex flex-col gap-3 text-sm text-neutral-500">
                             <a
-                                href="https://github.com"
+                                href="https://github.com/subham007ai/share-room"
                                 target="_blank"
                                 rel="noreferrer"
                                 className="flex items-center gap-2 hover:text-white transition-colors w-fit"
