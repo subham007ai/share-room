@@ -124,3 +124,49 @@ This distinction is intentional and documented.
 git clone https://github.com/<your-username>/Share-Room.git
 cd Share-Room
 npm install
+```
+
+### Create a .env file:
+```env
+VITE_SUPABASE_URL=your_supabase_project_url
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+```
+
+### Run locally:
+
+```bash
+npm run dev
+```
+
+## Database Migrations
+
+### All schema changes are managed through Supabase migrations.
+Before running locally or deploying:
+
+```bash
+supabase db pull
+supabase db push
+```
+
+### Ensure:
+- Row Level Security is enabled
+- Migrations are in sync
+- Cleanup jobs are backend-owned
+
+## Privacy & Limitations
+- ShareRoom minimizes retained data by design
+- It does not claim full anonymity or cryptographic guarantees
+- Users should not share highly sensitive or regulated data
+- Once content is copied outside the app, ShareRoom has no control over it
+#### See PRIVACY_POLICY.md for details.
+
+## Project Status
+- Version: V1.1
+- Focus: Reliability, performance, and UX polish
+- Monetization: None
+- Accounts: None
+- History: None
+#### Future versions will improve control during the moment, not persistence.
+
+## License
+MIT License
