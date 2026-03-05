@@ -6,6 +6,7 @@ import { RoomOptions } from '@/components/shareroom/RoomOptions';
 import { RoomCreated } from '@/components/shareroom/RoomCreated';
 import { getSessionId } from '@/lib/session';
 import { supabase } from '@/integrations/supabase/client';
+import { generateKey } from '@/lib/e2e';
 import { Button } from '@/components/ui/button';
 import { FlipWordsDemo } from '@/components/ui/flip-words-demo';
 import { Typewriter } from '@/components/ui/typewriter';
@@ -24,6 +25,8 @@ const Index = () => {
   const [loading, setLoading] = useState(false);
   const [joinCode, setJoinCode] = useState<string | null>(null);
   const [isPageLoaded, setIsPageLoaded] = useState(false);
+  // E2E: key generated at room creation, threaded into the share URL as #key=...
+  const [e2eKey, setE2eKey] = useState<string | undefined>(undefined);
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const usernameInputRef = useRef<HTMLInputElement>(null);
@@ -70,7 +73,7 @@ const Index = () => {
     }
   };
 
-  const handleCreateRoom = async () => {
+  const handleCreateRoom = async (durationMinutes: number) => {
     setLoading(true);
     try {
       const sessionId = await getSessionId();
@@ -78,9 +81,16 @@ const Index = () => {
       const { data: code, error } = await supabase.rpc('create_room', {
         name: `${username}'s Room`,
         host_session_id: sessionId,
+        duration_minutes: durationMinutes,
       });
 
       if (error) throw error;
+
+      // Generate a fresh AES-GCM 256-bit key for this room.
+      // The key is shared only via the URL fragment (#key=...) which
+      // is never sent to the server.
+      const key = await generateKey();
+      setE2eKey(key);
 
       setRoomCode(code);
       setStep('created');
@@ -96,7 +106,9 @@ const Index = () => {
   };
 
   const handleGoToRoom = () => {
-    navigate(`/room/${roomCode}?username=${encodeURIComponent(username)}`);
+    // Append the E2E key as a URL fragment — it never leaves the browser
+    const hash = e2eKey ? `#key=${e2eKey}` : '';
+    navigate(`/room/${roomCode}?username=${encodeURIComponent(username)}${hash}`);
   };
 
   const handleStartClick = () => {
@@ -209,7 +221,7 @@ const Index = () => {
               )}
 
               {step === 'created' && (
-                <RoomCreated roomCode={roomCode} onGoToRoom={handleGoToRoom} />
+                <RoomCreated roomCode={roomCode} encryptionKey={e2eKey} onGoToRoom={handleGoToRoom} />
               )}
             </div>
 

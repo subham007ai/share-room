@@ -76,6 +76,15 @@
     --terminal-red: 0 72% 51%;
     --terminal-blue: 217 91% 60%;
     --terminal-purple: 280 60% 60%;
+
+    /* Room-specific UI tokens */
+    --room-shell: 0 0% 4%;
+    --room-surface: 0 0% 9%;
+    --room-surface-muted: 0 0% 14%;
+    --room-border: 0 0% 22%;
+    --room-text: 0 0% 95%;
+    --room-text-muted: 0 0% 68%;
+    --room-accent: 142 76% 36%;
   }
 
   .light {
@@ -131,6 +140,15 @@
     --code: 0 0% 40%;
     --code-foreground: 0 0% 10%;
     --code-bg: 0 0% 95%;
+
+    /* Room-specific UI tokens */
+    --room-shell: 0 0% 98%;
+    --room-surface: 0 0% 100%;
+    --room-surface-muted: 0 0% 96%;
+    --room-border: 0 0% 83%;
+    --room-text: 0 0% 12%;
+    --room-text-muted: 0 0% 40%;
+    --room-accent: 142 76% 32%;
   }
 }
 
@@ -182,6 +200,14 @@
 
   .font-sans {
     font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  }
+
+  .room-shell {
+    background:
+      radial-gradient(circle at 15% 10%, hsl(var(--room-surface-muted) / 0.45), transparent 35%),
+      radial-gradient(circle at 80% 0%, hsl(var(--room-surface-muted) / 0.3), transparent 40%),
+      hsl(var(--room-shell));
+    color: hsl(var(--room-text));
   }
 
 
@@ -321,4 +347,90 @@ a[href="https://spline.design"],
   visibility: hidden !important;
   opacity: 0 !important;
   pointer-events: none !important;
+}
+
+@layer utilities {
+  .animate-slide-up {
+    animation: slide-up 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .animate-message-system {
+    animation: message-fade-in 0.4s ease-out;
+  }
+
+  .animate-message-send {
+    animation: message-slide-up 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .animate-message-receive {
+    animation: message-slide-up 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.2s ease-out;
+  }
+
+  .animate-jump {
+    animation: jump 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  @keyframes slide-up {
+    from {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes message-slide-up {
+    from {
+      transform: translateY(10px) scale(0.98);
+      opacity: 0;
+    }
+
+    to {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes message-fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(-5px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes jump {
+    0% {
+      transform: scale(1);
+    }
+
+    50% {
+      transform: scale(1.1);
+    }
+
+    100% {
+      transform: scale(1);
+    }
+  }
 }

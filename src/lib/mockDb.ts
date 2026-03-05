@@ -147,8 +147,12 @@ class MockDb {
             username: 'System',
             content: `${username} joined the room`,
             message_type: 'system',
+            reply_to_id: null,
+            file_url: null,
+            file_name: null,
+            file_type: null,
             is_system: true,
-        } as any);
+        });
 
         return participant;
     }
@@ -214,8 +218,12 @@ class MockDb {
             username: 'System',
             content: `${username} left the room`,
             message_type: 'system',
+            reply_to_id: null,
+            file_url: null,
+            file_name: null,
+            file_type: null,
             is_system: true,
-        } as any);
+        });
     }
 }
 

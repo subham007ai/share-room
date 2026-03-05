@@ -3,6 +3,7 @@ import { renderHook, act } from '@testing-library/react-hooks';
 import { useRoom } from '../hooks/useRoom';
 import { supabase } from '../integrations/supabase/client';
 import { vi, describe, it, expect, beforeEach } from 'vitest';
+import type { Mock } from 'vitest';
 
 // Mock Supabase client
 vi.mock('../integrations/supabase/client', () => ({
@@ -47,7 +48,8 @@ describe('useRoom Hook', () => {
 
     it('should join a room if exists', async () => {
         // Mock room data return
-        (supabase.from as any).mockImplementation((table: string) => {
+        const fromMock = supabase.from as unknown as Mock;
+        fromMock.mockImplementation((table: string) => {
             if (table === 'rooms') {
                 return {
                     select: vi.fn().mockReturnThis(),

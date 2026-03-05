@@ -14,6 +14,38 @@ export type Database = {
   }
   public: {
     Tables: {
+      message_reactions: {
+        Row: {
+          id: string
+          message_id: string
+          session_id: string
+          emoji: string
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          message_id: string
+          session_id: string
+          emoji: string
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          message_id?: string
+          session_id?: string
+          emoji?: string
+          created_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "message_reactions_message_id_fkey"
+            columns: ["message_id"]
+            isOneToOne: false
+            referencedRelation: "messages"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       room_bans: {
         Row: {
           banned_at: string
@@ -47,6 +79,8 @@ export type Database = {
         Row: {
           content: string | null
           created_at: string
+          edited_at: string | null
+          expires_at: string
           file_name: string | null
           file_type: string | null
           file_url: string | null
@@ -61,6 +95,8 @@ export type Database = {
         Insert: {
           content?: string | null
           created_at?: string
+          edited_at?: string | null
+          expires_at?: string
           file_name?: string | null
           file_type?: string | null
           file_url?: string | null
@@ -75,6 +111,8 @@ export type Database = {
         Update: {
           content?: string | null
           created_at?: string
+          edited_at?: string | null
+          expires_at?: string
           file_name?: string | null
           file_type?: string | null
           file_url?: string | null
@@ -152,6 +190,7 @@ export type Database = {
         Row: {
           code: string
           created_at: string
+          expires_at: string
           host_session_id: string
           id: string
           is_locked: boolean
@@ -161,6 +200,7 @@ export type Database = {
         Insert: {
           code: string
           created_at?: string
+          expires_at?: string
           host_session_id: string
           id?: string
           is_locked?: boolean
@@ -170,6 +210,7 @@ export type Database = {
         Update: {
           code?: string
           created_at?: string
+          expires_at?: string
           host_session_id?: string
           id?: string
           is_locked?: boolean
@@ -187,6 +228,7 @@ export type Database = {
         Args: {
           name: string
           host_session_id: string
+          duration_minutes?: number
         }
         Returns: string
       }

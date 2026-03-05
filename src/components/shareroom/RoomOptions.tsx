@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Plus, LogIn, Hash } from 'lucide-react';
+import { Plus, LogIn, Hash, Clock } from 'lucide-react';
 
 interface RoomOptionsProps {
-  onCreateRoom: () => Promise<void>;
+  onCreateRoom: (durationMinutes: number) => Promise<void>;
   onJoinRoom: (code: string) => void;
   loading?: boolean;
 }
@@ -12,6 +12,7 @@ interface RoomOptionsProps {
 export const RoomOptions = ({ onCreateRoom, onJoinRoom, loading }: RoomOptionsProps) => {
   const [mode, setMode] = useState<'choose' | 'join'>('choose');
   const [roomCode, setRoomCode] = useState('');
+  const [duration, setDuration] = useState(1440); // Default 24h
   const [error, setError] = useState('');
 
   const handleJoin = (e: React.FormEvent) => {
@@ -71,24 +72,45 @@ export const RoomOptions = ({ onCreateRoom, onJoinRoom, loading }: RoomOptionsPr
   }
 
   return (
-    <div className="w-full max-w-sm animate-fade-in mx-auto">
-      <div className="flex gap-6">
+    <div className="w-full max-w-sm animate-fade-in mx-auto space-y-4">
+      {/* Duration Selector */}
+      <div className="flex bg-white/10 backdrop-blur-md rounded-full p-1 border border-white/20">
+        {[
+          { label: '15m', value: 15 },
+          { label: '1h', value: 60 },
+          { label: '6h', value: 360 },
+          { label: '24h', value: 1440 },
+        ].map((opt) => (
+          <button
+            key={opt.value}
+            onClick={() => setDuration(opt.value)}
+            className={`flex-1 rounded-full text-xs font-medium py-1.5 transition-all ${duration === opt.value
+                ? 'bg-white text-black shadow-sm'
+                : 'text-white/60 hover:text-white hover:bg-white/10'
+              }`}
+          >
+            {opt.label}
+          </button>
+        ))}
+      </div>
+
+      <div className="flex gap-4">
         <Button
-          onClick={onCreateRoom}
+          onClick={() => onCreateRoom(duration)}
           disabled={loading}
-          className="flex-1 h-14 bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 text-white font-semibold text-base rounded-full transition-all"
+          className="flex-1 h-12 bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 text-white font-semibold text-base rounded-full transition-all"
         >
           <Plus className="mr-2 w-5 h-5" />
-          {loading ? 'Creating...' : 'Create Room'}
+          {loading ? 'Creating...' : 'Create'}
         </Button>
         <Button
           onClick={() => setMode('join')}
           variant="outline"
           disabled={loading}
-          className="flex-1 h-14 bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 text-white font-semibold text-base rounded-full transition-all"
+          className="flex-1 h-12 bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 text-white font-semibold text-base rounded-full transition-all"
         >
           <LogIn className="mr-2 w-5 h-5" />
-          Join Room
+          Join
         </Button>
       </div>
     </div>

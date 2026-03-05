@@ -1,17 +1,44 @@
 import FingerprintJS from '@fingerprintjs/fingerprintjs';
 
 let sessionPromise: Promise<string> | null = null;
+let inMemorySessionId: string | null = null;
+
+const getStoredItem = (key: string): string | null => {
+  try {
+    return localStorage.getItem(key);
+  } catch {
+    return null;
+  }
+};
+
+const setStoredItem = (key: string, value: string) => {
+  try {
+    localStorage.setItem(key, value);
+  } catch {
+    inMemorySessionId = value;
+  }
+};
+
+const removeStoredItem = (key: string) => {
+  try {
+    localStorage.removeItem(key);
+  } catch {
+    // noop
+  }
+};
 
 export const getSessionId = async (): Promise<string> => {
+  if (inMemorySessionId) return inMemorySessionId;
+
   // Check localStorage first
-  const stored = localStorage.getItem('shareroom_session_id');
+  const stored = getStoredItem('shareroom_session_id');
   if (stored) return stored;
 
   // Fallback check for old key during migration
-  const oldStored = localStorage.getItem('shareroom_fingerprint');
+  const oldStored = getStoredItem('shareroom_fingerprint');
   if (oldStored) {
-    localStorage.setItem('shareroom_session_id', oldStored);
-    localStorage.removeItem('shareroom_fingerprint');
+    setStoredItem('shareroom_session_id', oldStored);
+    removeStoredItem('shareroom_fingerprint');
     return oldStored;
   }
 
@@ -40,7 +67,7 @@ export const getSessionId = async (): Promise<string> => {
         visitorId = 'sess_' + Math.random().toString(36).substr(2, 9);
       }
 
-      localStorage.setItem('shareroom_session_id', visitorId);
+      setStoredItem('shareroom_session_id', visitorId);
       return visitorId;
     })();
   }
