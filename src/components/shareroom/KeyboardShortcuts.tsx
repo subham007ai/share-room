@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { Keyboard, X } from 'lucide-react';
 
 const shortcuts = [
@@ -37,7 +38,7 @@ export const KeyboardShortcuts = () => {
                 <Keyboard className="w-3.5 h-3.5 text-mono-600" />
             </button>
 
-            {open && (
+            {open && createPortal(
                 <div className="fixed inset-0 z-[100] flex items-center justify-center p-4" onClick={() => setOpen(false)}>
                     <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
                     <div
@@ -79,7 +80,8 @@ export const KeyboardShortcuts = () => {
 
                         <p className="mt-5 text-[11px] text-white/30 text-center">Press <kbd className="px-1 py-0.5 bg-white/10 rounded text-[10px]">?</kbd> to toggle</p>
                     </div>
-                </div>
+                </div>,
+                document.body
             )}
         </>
     );

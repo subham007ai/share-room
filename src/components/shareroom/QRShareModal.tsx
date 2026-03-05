@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { createPortal } from 'react-dom';
 import { QRCodeSVG } from 'qrcode.react';
 import { Copy, Check, X, QrCode } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -34,7 +35,7 @@ export const QRShareModal = ({ roomCode, encryptionKey }: QRShareModalProps) => 
                 <span className="hidden md:inline text-xs text-mono-700">Share</span>
             </button>
 
-            {open && (
+            {open && createPortal(
                 <div className="fixed inset-0 z-[100] flex items-center justify-center p-4" onClick={() => setOpen(false)}>
                     {/* Backdrop */}
                     <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" />
@@ -83,12 +84,16 @@ export const QRShareModal = ({ roomCode, encryptionKey }: QRShareModalProps) => 
                         </div>
 
                         {encryptionKey && (
-                            <p className="text-[11px] text-amber-400/70 text-center">
-                                🔐 Link includes the encryption key. Share only with trusted people.
-                            </p>
+                            <div className="mt-1 flex items-start gap-2 bg-amber-500/10 border border-amber-500/20 rounded-lg p-2 max-w-full">
+                                <span className="text-[12px] leading-tight shrink-0">🔐</span>
+                                <p className="text-[11px] text-amber-500/90 leading-tight text-left">
+                                    Link includes the encryption key. Share only with trusted people.
+                                </p>
+                            </div>
                         )}
                     </div>
-                </div>
+                </div>,
+                document.body
             )}
         </>
     );
