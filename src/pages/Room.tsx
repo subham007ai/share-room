@@ -294,7 +294,7 @@ const Room = () => {
 
   return (
     <div
-      className="fixed inset-0 w-full h-full room-shell overflow-hidden"
+      className="fixed inset-0 w-full h-screen supports-[height:100dvh]:h-[100dvh] room-shell overflow-hidden"
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
